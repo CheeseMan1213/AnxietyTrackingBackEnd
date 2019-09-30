@@ -1,0 +1,87 @@
+/*
+* Enable devtools in Intellij link = https://www.youtube.com/watch?v=VWF7vCJSqrA
+* */
+buildscript {
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        if(System.getProperty('os.name').toLowerCase().contains('windows')) {
+            mavenLocal()
+            mavenCentral()
+        }
+        else {
+            mavenLocal()
+            mavenCentral()
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.7.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'anxiety_tracking_app'
+version '1.0-SNAPSHOT'
+
+repositories {
+    if(System.getProperty('os.name').toLowerCase().contains('windows')) {
+        mavenLocal()
+        mavenCentral()
+    }
+    else {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+    compile('org.springframework.boot:spring-boot-devtools')
+    testCompile('junit:junit')
+    /*compile('org.mockito:mockito-core')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    runtime('mysql:mysql-connector-java:5.1.17')
+    runtime('mysql:mysql-connector-java')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    testCompile('info.cukes:cucumber-java:1.2.4')
+    testCompile('info.cukes:cucumber-jvm:1.2.4')
+    testCompile('info.cukes:cucumber-junit:1.2.4')
+    testCompile('info.cukes:cucumber-spring:1.2.4')
+    compile('info.cukes:cucumber-jvm-deps:1.0.5')
+    compile('info.cukes:gherkin:2.12.2')
+    runtime('pl.pragmatists:JUnitParams:1.1.1')
+    compile('org.seleniumhq.selenium:selenium-java')*/
+}
+
+jar {
+    from configurations.compile.collect {zipTree it}
+    manifest.attributes "Main-Class": "com.main.Main"
+}
+
+test {
+    reports {
+        junitXml.enabled = true
+        html.enabled = true
+    }
+
+
+    /*if (!System.getProperty('os.name').toLowerCase().contains('windows')) {
+        systemProperty "spring.profiles.active", "production"
+    }*/
+}
