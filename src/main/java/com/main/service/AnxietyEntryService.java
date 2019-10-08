@@ -15,9 +15,11 @@ public class AnxietyEntryService {
     private AnxietyEntryRepository anxietyEntryRepository;
 
     public List<AnxietyEntry> getAllAnxieties() {
-
         List<AnxietyEntry> anxietyEntry = new ArrayList<>();
         anxietyEntryRepository.findAll().forEach(anxietyEntry::add);
         return anxietyEntry;
+    }
+    public void saveAnxiety(AnxietyEntry anxietyEntry) {
+        anxietyEntryRepository.save(anxietyEntry);
     }
 }
