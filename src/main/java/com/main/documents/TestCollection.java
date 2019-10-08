@@ -10,17 +10,17 @@ import java.util.Date;
 public class TestCollection {
 
     @Id
-    private BigInteger _id;
+    private String _id;
 
     private String firstName;
     private String lastName;
     private Date TTime;
 
-    public BigInteger get_id() {
+    public String get_id() {
         return _id;
     }
 
-    public void set_id(BigInteger _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
