@@ -20,4 +20,18 @@ public class TestService {
         testCollectionRepository.findAll().forEach(testCollection::add);
         return testCollection;
     }
+    public void saveTest(TestCollection testCollection) {
+        testCollectionRepository.save(testCollection);
+    }
+    //The create and update calls are basically the same, but the already existing _id
+    //will be needed to update.
+    public void updateTest(TestCollection testCollection) {
+        testCollectionRepository.save(testCollection);
+    }
+    public void deleteByFirstName(String firstName) {
+        testCollectionRepository.deleteByFirstName(firstName);
+    }
+    public void deleteById(TestCollection testCollection) {
+        testCollectionRepository.deleteById(testCollection.get_id());
+    }
 }
