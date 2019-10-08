@@ -1,12 +1,10 @@
 package com.main.rest_controllers;
 
 import com.main.documents.AnxietyEntry;
+import com.main.enums.TodayWas;
 import com.main.service.AnxietyEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,18 @@ public class AnxietyController {
     @GetMapping(value = "/anxieties", produces = "application/json")
     public List<AnxietyEntry> getAllAnxieties() {
         return anxietyEntryService.getAllAnxieties();
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/anxieties", produces = "application/json")
+    public void postSingleAnxiety(@RequestBody AnxietyEntry anxietyEntryRequest) {
+
+        AnxietyEntry anxietyEntry = new AnxietyEntry();
+
+        anxietyEntry.set_anxEntry(anxietyEntryRequest.get_anxEntry());
+        anxietyEntry.set_date(anxietyEntryRequest.get_date());
+        anxietyEntry.set_todayWas(anxietyEntryRequest.get_todayWas());
+
+        anxietyEntryService.saveAnxiety(anxietyEntry);
     }
 }
