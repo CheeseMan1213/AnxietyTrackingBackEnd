@@ -52,6 +52,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile('org.springframework.boot:spring-boot-devtools')
     testCompile('junit:junit')
+    compile('org.jetbrains:annotations:17.0.0')
     /*compile('org.mockito:mockito-core')
     compile('org.springframework.boot:spring-boot-starter-security')
     runtime('mysql:mysql-connector-java:5.1.17')
