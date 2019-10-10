@@ -7,6 +7,7 @@ package com.main.rest_controllers;
 
 import com.main.documents.TestCollection;
 import com.main.service.TestService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +37,7 @@ public class HelloWorld {
      * use with caution.*/
     @CrossOrigin
     @PostMapping(value = "/tests", consumes = "application/json")
-    public void testPost(@RequestBody TestCollection testCollectionRequest) {
+    public void testPost(@NotNull @RequestBody TestCollection testCollectionRequest) {
         TestCollection testCollection = new TestCollection();
 
         testCollection.setFirstName(testCollectionRequest.getFirstName());
