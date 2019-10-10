@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.math.BigInteger;
 
 @Repository
-public interface AnxietyEntryRepository extends MongoRepository<AnxietyEntry, BigInteger> {
+public interface AnxietyEntryRepository extends MongoRepository<AnxietyEntry, String> {
     //
 }
