@@ -1,8 +1,13 @@
+/*
+ * Work Cited
+ *
+ * */
+
 package com.main.rest_controllers;
 
 import com.main.documents.AnxietyEntry;
-import com.main.enums.TodayWas;
 import com.main.service.AnxietyEntryService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,10 +28,11 @@ public class AnxietyController {
         return anxietyEntryService.getAllAnxieties();
     }
 
+    /*The @CrossOrigin annotation makes things less secure
+     * use with caution.*/
     @CrossOrigin
-    @PostMapping(value = "/anxieties", produces = "application/json")
-    public void postSingleAnxiety(@RequestBody AnxietyEntry anxietyEntryRequest) {
-
+    @PostMapping(value = "/anxieties", consumes = "application/json")
+    public void postAnxiety(@NotNull @RequestBody AnxietyEntry anxietyEntryRequest) {
         AnxietyEntry anxietyEntry = new AnxietyEntry();
 
         anxietyEntry.set_anxEntry(anxietyEntryRequest.get_anxEntry());
@@ -34,5 +40,29 @@ public class AnxietyController {
         anxietyEntry.set_todayWas(anxietyEntryRequest.get_todayWas());
 
         anxietyEntryService.saveAnxiety(anxietyEntry);
+    }
+    /*The @CrossOrigin annotation makes things less secure
+     * use with caution.*/
+    @CrossOrigin
+    @PutMapping(value = "/anxieties", consumes = "application/json")
+    public void putAnxiety(@RequestBody AnxietyEntry anxietyEntryRequest) {
+
+        anxietyEntryService.updateAnxiety(anxietyEntryRequest);
+    }
+
+    /*The @CrossOrigin annotation makes things less secure
+     * use with caution.*/
+
+    //I am using POST instead of a DELETE here, because I want to be able to send a body
+    //as part of performing my delete. This is because I want only one entry, even if they
+    //have the same first name, to be deleted. I want to use mongoDB's "_id", but
+    //I do not want to send it as part of the URL. And Flutter's http library does
+    //not have a "body" as part of its delete method as of Flutter 1.9,
+    //and package http: ^0.12.0+2
+    @CrossOrigin
+    @PostMapping(value = "/deleteAnxiety", consumes = "application/json")
+    public void deleteAnxiety(@RequestBody AnxietyEntry anxietyEntryRequest) {
+
+        anxietyEntryService.deleteById(anxietyEntryRequest);
     }
 }
