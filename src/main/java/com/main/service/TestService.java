@@ -2,6 +2,7 @@ package com.main.service;
 
 import com.main.documents.TestCollection;
 import com.main.repositorys.TestCollectionRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,6 @@ public class TestService {
     private TestCollectionRepository testCollectionRepository;
 
     public List<TestCollection> getAllTests() {
-
         List<TestCollection> testCollection = new ArrayList<>();
         testCollectionRepository.findAll().forEach(testCollection::add);
         return testCollection;
@@ -31,7 +31,7 @@ public class TestService {
     public void deleteByFirstName(String firstName) {
         testCollectionRepository.deleteByFirstName(firstName);
     }
-    public void deleteById(TestCollection testCollection) {
+    public void deleteById(@NotNull TestCollection testCollection) {
         testCollectionRepository.deleteById(testCollection.get_id());
     }
 }
