@@ -35,9 +35,9 @@ public class AnxietyController {
     public void postAnxiety(@NotNull @RequestBody AnxietyEntry anxietyEntryRequest) {
         AnxietyEntry anxietyEntry = new AnxietyEntry();
 
-        anxietyEntry.set_anxEntry(anxietyEntryRequest.get_anxEntry());
-        anxietyEntry.set_date(anxietyEntryRequest.get_date());
-        anxietyEntry.set_todayWas(anxietyEntryRequest.get_todayWas());
+        anxietyEntry.setAnxEntry(anxietyEntryRequest.getAnxEntry());
+        anxietyEntry.setDate(anxietyEntryRequest.getDate());
+        anxietyEntry.setTodayWas(anxietyEntryRequest.getTodayWas());
 
         anxietyEntryService.saveAnxiety(anxietyEntry);
     }
