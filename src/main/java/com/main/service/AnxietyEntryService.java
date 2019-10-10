@@ -22,4 +22,12 @@ public class AnxietyEntryService {
     public void saveAnxiety(AnxietyEntry anxietyEntry) {
         anxietyEntryRepository.save(anxietyEntry);
     }
+    //The create and update calls are basically the same, but the already existing _id
+    //will be needed to update.
+    public void updateAnxiety(AnxietyEntry anxietyEntry) {
+        anxietyEntryRepository.save(anxietyEntry);
+    }
+    public void deleteById(@org.jetbrains.annotations.NotNull AnxietyEntry anxietyEntry) {
+        anxietyEntryRepository.deleteById(anxietyEntry.get_id());
+    }
 }
