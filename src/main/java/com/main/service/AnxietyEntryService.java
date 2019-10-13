@@ -30,4 +30,9 @@ public class AnxietyEntryService {
     public void deleteById(@org.jetbrains.annotations.NotNull AnxietyEntry anxietyEntry) {
         anxietyEntryRepository.deleteById(anxietyEntry.get_id());
     }
+    public List<AnxietyEntry> getAllAnxietiesByDate(String date) {
+        List<AnxietyEntry> anxietiesOfSpecificDate = new ArrayList<>();
+        anxietyEntryRepository.findAllByDate(date).forEach(anxietiesOfSpecificDate::add);
+        return anxietiesOfSpecificDate;
+    }
 }
