@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/anxiety")
+//@RequestMapping("/anxiety")
 public class AnxietyController {
 
     @Autowired
@@ -64,5 +64,13 @@ public class AnxietyController {
     public void deleteAnxiety(@RequestBody AnxietyEntry anxietyEntryRequest) {
 
         anxietyEntryService.deleteById(anxietyEntryRequest);
+    }
+
+    /*The @CrossOrigin annotation makes things less secure
+     * use with caution.*/
+    @CrossOrigin
+    @GetMapping(value = "/anxieties/{date}", produces = "application/json")
+    public List<AnxietyEntry> getAnxietyByDate(@PathVariable("date") String date) {
+        return anxietyEntryService.getAllAnxietiesByDate(date);
     }
 }
