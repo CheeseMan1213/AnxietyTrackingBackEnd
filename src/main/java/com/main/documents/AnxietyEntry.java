@@ -1,4 +1,5 @@
 package com.main.documents;
+import com.main.enums.TodayWas;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,7 +11,7 @@ public class AnxietyEntry {
     private String _id;
     private String date;//Date that will be passed form the calendar page.
     private String anxEntry;//The anxiety entry text.
-    private String todayWas;//For the radio buttons.
+    private TodayWas todayWas;//For the radio buttons.
 
 
 
@@ -38,11 +39,11 @@ public class AnxietyEntry {
         this.anxEntry = anxEntry;
     }
 
-    public String getTodayWas() {
+    public TodayWas getTodayWas() {
         return todayWas;
     }
 
-    public void setTodayWas(String todayWas) {
+    public void setTodayWas(TodayWas todayWas) {
         this.todayWas = todayWas;
     }
 }
