@@ -53,6 +53,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-devtools')
     testCompile('junit:junit')
     compile('org.jetbrains:annotations:17.0.0')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '2.2.1.RELEASE'
     /*compile('org.mockito:mockito-core')
     compile('org.springframework.boot:spring-boot-starter-security')
     runtime('mysql:mysql-connector-java:5.1.17')
